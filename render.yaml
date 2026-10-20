@@ -2,7 +2,7 @@ services:
   - type: web
     name: atelie-os
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 90 wsgi:app
     envVars:
@@ -14,11 +14,3 @@ services:
         sync: false
       - key: HTTPS
         value: '1'
-      - key: APP_DB
-        value: /var/data/estofados.db
-      - key: UPLOAD_DIR
-        value: /var/data/uploads
-    disk:
-      name: atelie-data
-      mountPath: /var/data
-      sizeGB: 1
